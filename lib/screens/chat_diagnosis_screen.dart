@@ -184,7 +184,10 @@ class _ChatDiagnosisScreenState extends State<ChatDiagnosisScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppConstants.consultationTitle),
+        title: const Text(
+          AppConstants.consultationTitle,
+          style: TextStyle(fontSize: 19),
+        ),
         centerTitle: true,
       ),
       body: isLoading

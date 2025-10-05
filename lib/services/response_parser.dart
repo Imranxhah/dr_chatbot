@@ -4,7 +4,7 @@ class ResponseParser {
   static List<QuestionModel> parseQuestions(String response) {
     List<QuestionModel> questions = [];
 
-    for (int i = 1; i <= 3; i++) {
+    for (int i = 1; i <= 2; i++) {
       RegExp regex = RegExp(
         'QUESTION$i:\\s*(.+?)(?=QUESTION${i + 1}:|\$)',
         multiLine: true,

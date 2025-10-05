@@ -21,7 +21,7 @@ class AppConstants {
       'This is not a substitute for professional medical advice. Always consult a healthcare provider.';
 
   // Question Configuration
-  static const int questionsPerRound = 3;
+  static const int questionsPerRound = 2;
   static const int maxConversationRounds = 5;
 
   // UI Messages

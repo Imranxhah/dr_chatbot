@@ -39,7 +39,7 @@ class QuestionWidget extends StatelessWidget {
         ),
         const SizedBox(height: AppColors.spacingMedium - 4),
         if (question.isInput)
-          _buildTextField()
+          _buildTextField(context)
         else if (question.isMCQ)
           _buildMCQOptions(),
         const SizedBox(height: AppColors.spacingLarge),
@@ -47,13 +47,24 @@ class QuestionWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildTextField() {
+  /// ✅ Fixed TextField with visible text and hint color
+  Widget _buildTextField(BuildContext context) {
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
+
     return TextField(
       controller: controller,
+      style: TextStyle(
+        color: isDark ? Colors.white : Colors.black, // visible typed text
+      ),
       decoration: InputDecoration(
         hintText: AppConstants.answerPrompt,
+        hintStyle: TextStyle(
+          color: isDark
+              ? Colors.grey.shade400
+              : Colors.grey.shade600, // visible hint
+        ),
         filled: true,
-        fillColor: AppColors.surface,
+        fillColor: AppColors.surface, // your background color
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppColors.borderRadiusMedium),
           borderSide: const BorderSide(color: AppColors.border),
@@ -109,7 +120,7 @@ class QuestionWidget extends StatelessWidget {
                       option,
                       style: TextStyle(
                         color: isSelected
-                            ? AppColors.textLight
+                            ? const Color.fromARGB(255, 255, 255, 255)
                             : AppColors.textPrimary,
                         fontWeight: FontWeight.w500,
                       ),

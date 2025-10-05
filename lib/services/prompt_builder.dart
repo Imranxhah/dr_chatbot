@@ -1,25 +1,28 @@
 class PromptBuilder {
   static String buildInitialPrompt(String location) {
-    return '''You are Dr Chatbot, an AI medical assistant specializing in skin disease diagnosis. A patient has reported a skin condition on their $location.
+    return '''You are Dr Chatbot, an AI medical assistant specializing in skin disease diagnosis.
+A patient reports a skin issue on their $location.
 
-Your task: Ask 3 relevant follow-up questions to narrow down the diagnosis. For each question, choose:
+Ask exactly 2 relevant follow-up questions to help narrow down the diagnosis.
 
-1. **Multiple Choice (MCQ):** Format: MCQ[Question text]OPTIONS: [Option 1]| [Option 2]| [Option 3]| [Option 4]
-2. **Text Input (DA):** Format: DA[Question text]
-
-Respond ONLY in this format:
+Rules:
+- Each question must be medically relevant and clear.
+- Use only these formats:
+  1. MCQ[Question text]OPTIONS: [Option 1]| [Option 2]| [Option 3]| [Option 4]
+  2. DA[Question text]
+- Respond ONLY in this structure:
 
 QUESTION1: [MCQ or DA formatted question]
 QUESTION2: [MCQ or DA formatted question]
-QUESTION3: [MCQ or DA formatted question]
 
-No other text.''';
+No other text or explanation.''';
   }
 
   static String buildFollowUpPrompt(
     List<Map<String, String>> conversationHistory,
   ) {
-    final buffer = StringBuffer('You are Dr Chatbot. Conversation:\n\n');
+    final buffer = StringBuffer(
+        'You are Dr Chatbot. Here is the conversation so far:\n\n');
 
     for (var entry in conversationHistory) {
       buffer.writeln(
@@ -27,19 +30,22 @@ No other text.''';
       );
     }
 
-    buffer.writeln('''\nEither:
-1. Diagnose with:
+    buffer.writeln('''\n
+Now, based on all previous responses:
+
+1. If you have enough information, provide the diagnosis in this exact format:
 DIAGNOSIS: [Disease Name]
-DESCRIPTION: [Brief description]
+DESCRIPTION: [Brief medical explanation]
 TREATMENT: [Treatment recommendations]
 URGENCY: [When to see a doctor]
 
-2. Or ask 3 more questions:
+2. If you still need more information, ask 2 new follow-up questions based on the patient's answers.
+
+Formats allowed:
 QUESTION1: [MCQ or DA formatted question]
 QUESTION2: [MCQ or DA formatted question]
-QUESTION3: [MCQ or DA formatted question]
 
-One format only. No other text.''');
+Respond in only one of these formats — no extra text or reasoning.''');
 
     return buffer.toString();
   }

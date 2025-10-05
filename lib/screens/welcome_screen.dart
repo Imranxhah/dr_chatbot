@@ -28,7 +28,6 @@ class WelcomeScreen extends StatelessWidget {
                   const SizedBox(height: AppColors.spacingXXLarge * 1.5),
                   _buildStartButton(context),
                   const SizedBox(height: AppColors.spacingXXLarge),
-                  _buildDisclaimer(),
                 ],
               ),
             ),
@@ -109,31 +108,6 @@ class WelcomeScreen extends StatelessWidget {
               color: AppColors.primary,
               fontWeight: FontWeight.bold,
             ),
-      ),
-    );
-  }
-
-  Widget _buildDisclaimer() {
-    return Container(
-      padding: const EdgeInsets.all(AppColors.spacingMedium),
-      decoration: BoxDecoration(
-        color: AppColors.overlayLight,
-        borderRadius: BorderRadius.circular(AppColors.borderRadiusMedium),
-      ),
-      child: const Row(
-        children: [
-          Icon(Icons.warning_amber_rounded, color: AppColors.warning),
-          SizedBox(width: AppColors.spacingMedium - 4),
-          Expanded(
-            child: Text(
-              AppConstants.disclaimerText,
-              style: TextStyle(
-                fontSize: 12,
-                color: AppColors.textLight,
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
