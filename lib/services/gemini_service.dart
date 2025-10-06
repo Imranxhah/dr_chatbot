@@ -3,7 +3,8 @@ import 'package:http/http.dart' as http;
 import '../config/app_constants.dart';
 
 class GeminiService {
-  static Future<String> generateContent(String prompt) async {
+  static Future<String> generateContent(String prompt,
+      {String? imageBase64}) async {
     if (AppConstants.geminiApiKey.isEmpty ||
         AppConstants.geminiApiKey == 'YOUR_ACTUAL_GEMINI_API_KEY') {
       throw Exception(AppConstants.errorApiMissing);
@@ -14,23 +15,35 @@ class GeminiService {
     );
 
     try {
+      Map<String, dynamic> requestBody = {
+        'contents': [
+          {
+            'parts': imageBase64 != null
+                ? [
+                    {
+                      'inline_data': {
+                        'mime_type': 'image/jpeg',
+                        'data': imageBase64,
+                      }
+                    },
+                    {'text': prompt},
+                  ]
+                : [
+                    {'text': prompt},
+                  ],
+          },
+        ],
+        'generationConfig': {
+          'temperature': AppConstants.apiTemperature,
+          'maxOutputTokens': AppConstants.apiMaxTokens,
+        },
+      };
+
       final response = await http
           .post(
             url,
             headers: {'Content-Type': 'application/json'},
-            body: jsonEncode({
-              'contents': [
-                {
-                  'parts': [
-                    {'text': prompt},
-                  ],
-                },
-              ],
-              'generationConfig': {
-                'temperature': AppConstants.apiTemperature,
-                'maxOutputTokens': AppConstants.apiMaxTokens,
-              },
-            }),
+            body: jsonEncode(requestBody),
           )
           .timeout(const Duration(seconds: AppConstants.apiTimeout));
 

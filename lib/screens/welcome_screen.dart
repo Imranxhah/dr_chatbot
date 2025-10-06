@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../config/app_colors.dart';
 import '../config/app_constants.dart';
-import 'initial_question_screen.dart';
+import 'image_upload_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -90,7 +90,7 @@ class WelcomeScreen extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const InitialQuestionScreen(),
+            builder: (context) => const ImageUploadScreen(),
           ),
         );
       },

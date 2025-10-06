@@ -18,11 +18,13 @@ dependencies:
 
   # Google Fonts for modern typography
   google_fonts: ^6.1.0
+  image_picker: ^1.0.7
+  image: ^4.1.7
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  flutter_lints: ^6.0.0
 
 flutter:
   uses-material-design: true

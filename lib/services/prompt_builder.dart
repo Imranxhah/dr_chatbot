@@ -1,6 +1,24 @@
 class PromptBuilder {
-  static String buildInitialPrompt(String location) {
-    return '''You are Dr Chatbot, an AI medical assistant specializing in skin disease diagnosis.
+  static String buildInitialPrompt(String location, {String? imageBase64}) {
+    if (imageBase64 != null) {
+      return '''You are Dr Chatbot, an AI medical assistant specializing in skin disease diagnosis.
+A patient has uploaded an image of their skin condition.
+
+Analyze the image and ask exactly 2 relevant follow-up questions to help narrow down the diagnosis.
+
+Rules:
+- Each question must be medically relevant and clear.
+- Use only these formats:
+  1. MCQ[Question text]OPTIONS: [Option 1]| [Option 2]| [Option 3]| [Option 4]
+  2. DA[Question text]
+- Respond ONLY in this structure:
+
+QUESTION1: [MCQ or DA formatted question]
+QUESTION2: [MCQ or DA formatted question]
+
+No other text or explanation.''';
+    } else {
+      return '''You are Dr Chatbot, an AI medical assistant specializing in skin disease diagnosis.
 A patient reports a skin issue on their $location.
 
 Ask exactly 2 relevant follow-up questions to help narrow down the diagnosis.
@@ -16,6 +34,7 @@ QUESTION1: [MCQ or DA formatted question]
 QUESTION2: [MCQ or DA formatted question]
 
 No other text or explanation.''';
+    }
   }
 
   static String buildFollowUpPrompt(

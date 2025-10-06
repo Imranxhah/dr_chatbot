@@ -10,8 +10,13 @@ import 'results_screen.dart';
 
 class ChatDiagnosisScreen extends StatefulWidget {
   final String initialSymptom;
+  final String? imageBase64;
 
-  const ChatDiagnosisScreen({super.key, required this.initialSymptom});
+  const ChatDiagnosisScreen({
+    super.key,
+    required this.initialSymptom,
+    this.imageBase64,
+  });
 
   @override
   State<ChatDiagnosisScreen> createState() => _ChatDiagnosisScreenState();
@@ -29,10 +34,18 @@ class _ChatDiagnosisScreenState extends State<ChatDiagnosisScreen> {
   @override
   void initState() {
     super.initState();
-    conversationHistory.add({
-      'role': 'user',
-      'content': 'Location: ${widget.initialSymptom}',
-    });
+    if (widget.imageBase64 != null) {
+      conversationHistory.add({
+        'role': 'user',
+        'content': 'Image: [SKIN_IMAGE_BASE64]',
+        'image': widget.imageBase64!,
+      });
+    } else {
+      conversationHistory.add({
+        'role': 'user',
+        'content': 'Location: ${widget.initialSymptom}',
+      });
+    }
     _generateNextQuestions();
   }
 
@@ -45,7 +58,17 @@ class _ChatDiagnosisScreenState extends State<ChatDiagnosisScreen> {
 
     try {
       String prompt = _buildPrompt();
-      String response = await GeminiService.generateContent(prompt);
+      String? imageBase64;
+
+      if (conversationHistory.isNotEmpty &&
+          conversationHistory[0].containsKey('image')) {
+        imageBase64 = conversationHistory[0]['image'];
+      }
+
+      String response = await GeminiService.generateContent(
+        prompt,
+        imageBase64: imageBase64,
+      );
       _parseResponse(response);
     } catch (e) {
       _handleError(e);
@@ -60,7 +83,14 @@ class _ChatDiagnosisScreenState extends State<ChatDiagnosisScreen> {
 
   String _buildPrompt() {
     if (conversationHistory.length == 1) {
-      return PromptBuilder.buildInitialPrompt(widget.initialSymptom);
+      String? imageBase64;
+      if (conversationHistory[0].containsKey('image')) {
+        imageBase64 = conversationHistory[0]['image'];
+      }
+      return PromptBuilder.buildInitialPrompt(
+        widget.initialSymptom,
+        imageBase64: imageBase64,
+      );
     } else {
       return PromptBuilder.buildFollowUpPrompt(conversationHistory);
     }
