@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import '../config/app_colors.dart';
 import '../config/app_constants.dart';
-import 'initial_question_screen.dart';
+import 'general_symptoms_screen.dart';
 
-class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({super.key});
+class GeneralDiseaseScreen extends StatelessWidget {
+  const GeneralDiseaseScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Skin Disease Detection'),
+        title: const Text('General Disease Detection'),
         centerTitle: true,
       ),
       body: Container(
@@ -56,7 +56,7 @@ class WelcomeScreen extends StatelessWidget {
         ],
       ),
       child: const Icon(
-        Icons.medical_services,
+        Icons.health_and_safety,
         size: AppColors.iconSizeXLarge + 32,
         color: AppColors.primary,
       ),
@@ -65,10 +65,11 @@ class WelcomeScreen extends StatelessWidget {
 
   Widget _buildTitle(BuildContext context) {
     return Text(
-      AppConstants.welcomeTitle,
+      'General Health Check',
       style: Theme.of(context).textTheme.displaySmall?.copyWith(
             color: AppColors.textLight,
             fontWeight: FontWeight.bold,
+            fontSize: 28,
           ),
       textAlign: TextAlign.center,
     );
@@ -76,7 +77,7 @@ class WelcomeScreen extends StatelessWidget {
 
   Widget _buildTagline(BuildContext context) {
     return Text(
-      AppConstants.appTagline,
+      'AI-Powered General Disease Diagnosis Assistant',
       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
             color: AppColors.textLight.withOpacity(0.9),
           ),
@@ -90,7 +91,7 @@ class WelcomeScreen extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const InitialQuestionScreen(),
+            builder: (context) => const GeneralSymptomsScreen(),
           ),
         );
       },
@@ -107,7 +108,7 @@ class WelcomeScreen extends StatelessWidget {
         elevation: AppColors.elevationMedium + 1,
       ),
       child: Text(
-        AppConstants.startConsultation,
+        'Start Diagnosis',
         style: Theme.of(context).textTheme.titleMedium?.copyWith(
               color: AppColors.primary,
               fontWeight: FontWeight.bold,
