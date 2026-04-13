@@ -1,16 +1,21 @@
-# skin_treatment
+<h1 align="center">Dr. ChatBot 🤖 (AI Engine)</h1>
+<p align="center">
+  <img src="https://img.shields.io/badge/AI-Machine%20Learning-FF6F00?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Platform-Flutter%20%2F%20Python-000000?style=for-the-badge" />
+</p>
 
-A new Flutter project.
+## 📖 Overview
+**Dr. ChatBot** is a conversational AI assistant designed to provide accurate, context-aware responses to diagnostic inputs and medical inquiries. 
 
-## Getting Started
+By applying modern NLP and Machine Learning techniques, the engine can interact effectively with users as a first-line diagnostic advisor. 
 
-This project is a starting point for a Flutter application.
+## ✨ Features
+- **Intelligent Routing**: Employs deep NLP capabilities to analyze symptom text and parse meaning.
+- **Responsive Architecture**: Built to reply with extremely low latency.
+- **Dataset Integration**: Trained/linked to comprehensive symptom mappings.
 
-A few resources to get you started if this is your first Flutter project:
+## 🛠️ Note
+This repository houses the core AI interface/configurations for the Dr. Chatbot project. For the UI layer, see [`dr_chatbot_ui`](https://github.com/Imranxhah/dr_chatbot_ui).
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+*Created by [Imranxhah](https://github.com/Imranxhah)*
