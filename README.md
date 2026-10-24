@@ -1,4 +1,8 @@
-![Dr. Chatbot — Flutter and Gemini exploration](docs/assets/cover.jpg)
+<p align="center">
+  <img src="docs/screenshots/skin-home.png" width="250" alt="Dr. Chatbot skin consultation home">
+  <img src="docs/screenshots/symptoms.png" width="250" alt="Dr. Chatbot symptom selector">
+  <img src="docs/screenshots/results.png" width="250" alt="Dr. Chatbot structured result screen">
+</p>
 
 # Dr. Chatbot
 
@@ -9,6 +13,12 @@ A Flutter prototype exploring conversational health interfaces with Google's Gem
 [Get started](docs/SETUP.md) · [How it works](#how-it-works) · [Limitations](#scope-and-limitations) · [Contribute](CONTRIBUTING.md)
 
 > Educational prototype. Generated responses are not a medical diagnosis or a substitute for professional care.
+
+## Guided experience
+
+| General health | Consultation | Guidance | Image input |
+| --- | --- | --- | --- |
+| <img src="docs/screenshots/general-home.png" width="210" alt="General health check entry screen"> | <img src="docs/screenshots/consultation.png" width="210" alt="Guided health questionnaire"> | <img src="docs/screenshots/guidance.png" width="210" alt="Treatment and escalation guidance"> | <img src="docs/screenshots/image-upload.png" width="210" alt="Skin image upload screen"> |
 
 ## What you can explore
 
@@ -85,7 +95,7 @@ flowchart LR
 - The existing widget test references an older package name and the default counter app. It needs replacement before it can serve as a useful test suite.
 - No clinical evaluation, diagnostic accuracy study, or production reliability benchmark is included.
 
-The cover is an abstract illustration, not a screenshot or a representation of clinical validation.
+The screenshots show the supplied Android UI and do not represent clinical validation.
 
 ## Contributing
 
