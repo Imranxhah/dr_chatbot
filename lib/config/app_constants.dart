@@ -3,7 +3,7 @@ class AppConstants {
   AppConstants._();
 
   // API Configuration
-  static const String geminiApiKey = 'AIzaSyAvsZ8bWSHiRgXGbUhBMtHSAQ965CHsdWg';
+  static const String geminiApiKey = String.fromEnvironment('GEMINI_API_KEY');
   static const String geminiApiBaseUrl =
       'https://generativelanguage.googleapis.com/v1beta/models';
   static const String geminiModel = 'gemini-2.5-flash-lite';
